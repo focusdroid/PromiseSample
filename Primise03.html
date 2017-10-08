@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	//使用Promise为了解决回调函数的代码代码冗余
+	f1 = ()=>{
+		return new Promise((ok, no)=>{
+			setTimeout(()=>{
+				ok('静夜思');
+			}, 5000);
+		});		
+	}
+
+
+	f2 = ()=>{
+		return new Promise((ok, no)=>{
+			setTimeout(()=>{
+				ok('李白');
+			}, 3000);
+		});		
+	}
+	f3 = ()=>{
+		return new Promise((ok, no)=>{
+			setTimeout(()=>{
+				ok('李白&杨玉环');
+			}, 1000);
+		});		
+	}	
+
+	//需求：先执行5秒。在执行3秒，在执行1秒
+	f1().then((res)=>{
+		console.log(res);
+
+		return promise2 = f2();
+		// return promise2;
+
+	}).then((result2)=>{
+		console.log(result2);
+
+		var promise3 = f3();
+		return promise3;
+	}).then((result3)=>{
+		console.log(result3)
+	});
+</script>
